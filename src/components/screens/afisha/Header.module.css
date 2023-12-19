@@ -1,0 +1,39 @@
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 20px 100px;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.14);
+}
+.logo {
+  font-size: 32px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+.a {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  margin-left: 40px;
+}
+.btn {
+  width: 120px;
+  height: 40px;
+  background: transparent;
+  border: 2px solid #fff;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  margin-left: 40px;
+}

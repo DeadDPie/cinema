@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Afisha.module.css";
+import { Header } from "./Header";
 
 export const Afisha = () => {
   const [movie, setMovie] = useState();
@@ -34,6 +35,7 @@ export const Afisha = () => {
       )}*/
   return (
     <>
+      <Header />
       <p className={styles.p}>afisha</p>
     </>
   );
