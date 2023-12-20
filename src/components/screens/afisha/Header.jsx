@@ -6,6 +6,12 @@ export const Header = () => {
         <a href="#" className={styles.logo}>
           Logo
         </a>
+        <div className={styles.box}>
+          <input type="text" placeholder="Search" />
+          <a href="#">
+            <i class="bx bx-search"></i>
+          </a>
+        </div>
         <nav>
           <a href="#" className={styles.a}>
             Home
