@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Afisha } from "./screens/afisha/Afisha";
+import { Afisha } from "./screens/afisha/Afisha/Afisha";
 
 export const Router = () => {
   return (
