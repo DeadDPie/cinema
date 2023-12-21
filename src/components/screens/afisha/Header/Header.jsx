@@ -7,9 +7,9 @@ export const Header = () => {
           Logo
         </a>
         <div className={styles.box}>
-          <input type="text" placeholder="Search" />
+          <input type="text" placeholder="Search" onChange={() => {}} />
           <a href="#">
-            <i class="bx bx-search"></i>
+            <i class="bx bx-search" onClick={() => {}}></i>
           </a>
         </div>
         <nav>

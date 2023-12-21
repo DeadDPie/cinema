@@ -1,11 +1,9 @@
+import { Card } from "../Card/Card";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./Afisha.module.css";
-import { Header } from "./Header";
 
-export const Afisha = () => {
-  const [movie, setMovie] = useState();
-  let m;
+export const CardsList = () => {
+  const [movies, setMovies] = useState();
   useEffect(() => {
     const func = async () => {
       const options = {
@@ -15,28 +13,25 @@ export const Afisha = () => {
 
       try {
         const response = await axios.request(options);
-        setMovie(response.data);
+        setMovies(response.data.films);
       } catch (error) {
         console.error(error);
       }
     };
     func();
   }, []);
+  //console.log(movies);
+  /*
   if (movie) {
     console.log(movie.films[0].name);
     const names = movie.films.map((x) => x.name);
     console.log(names);
-  }
+  }*/
 
   /*{movie && (
         <>
           <p>{movie}</p>
         </>
       )}*/
-  return (
-    <>
-      <Header />
-      <p className={styles.p}>afisha</p>
-    </>
-  );
+  return <>{movies && <Card data={movies}></Card>}</>;
 };
