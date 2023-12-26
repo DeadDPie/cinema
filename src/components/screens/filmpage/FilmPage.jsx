@@ -15,6 +15,7 @@ export const FilmPage = () => {
 
       try {
         const response = await axios.request(options);
+        console.log(response.data.film);
         //setMovies(response.data.films);
       } catch (error) {
         console.error(error);
@@ -22,6 +23,7 @@ export const FilmPage = () => {
     };
     func();
   }, []);
+
   return (
     <>
       <p>Filmpage</p>

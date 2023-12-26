@@ -3,13 +3,10 @@
 .item {
   display: flex;
   flex-direction: column;
-  border: 1px solid #fff;
   font-size: large;
-  width: 300px;
-  height: fit-content;
-  margin: 30px;
+  width: 250px;
+  margin: 50px 40px 20px 20px;
   box-sizing: border-box; /*дочерние элементы распологались внутри*/
-  padding: 20px;
 }
 .item button {
   background-color: #f55a5a;
@@ -18,52 +15,67 @@
   border: 2px;
   border-radius: 8px;
   font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  size: 18px;
-  height: 24px;
+  font-weight: 300;
+  font-size: 24px;
   box-align: Center;
-  margin: 10px;
+  margin: 5px;
+  color: white;
 }
 .rating {
   color: #e2b33a;
   font: "Roboto", sans-serif;
   font-weight: 400;
   size: 14px;
-  height: 14px;
   margin: 5px;
   padding: 5px;
 }
-.item h3 {
+.item .h2 {
   font: "Roboto", sans-serif;
   font-weight: 400;
-  size: 15px;
+  font-size: 20px;
   color: #949494;
-  margin: 5px;
+  margin-left: 10px;
 }
 .item i {
+  margin-left: 10px;
   margin-top: 5px;
-  margin-left: 5px;
   color: #6f6464;
 }
-.item h2 {
+.item .h1 {
   font: "Roboto", sans-serif;
   font-weight: 700;
-  size: 20px;
-  margin: 5px;
-  margin-bottom: 15px;
+  font-size: 28px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  margin-left: 10px;
 }
 .about {
-  background-color: #b89e9e;
-  width: 136px;
-  border-radius: 6px, 6px, 0px, 0px;
+  text-align: center;
+  background-color: rgba(208, 167, 193, 0.536);
+  width: 156px;
+  border-radius: 10px;
   font: "Roboto", sans-serif;
   font-weight: 500;
   size: 14px;
   align-items: Center;
   padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .image {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 340px;
+  border-radius: 8px;
+}
+.ageRating {
+  background-color: #3f3737ef;
+  border-radius: 5px;
+  min-width: 20px;
+  max-width: 60px;
+  padding: 5px;
+  margin-left: auto;
+  margin-top: -40px;
+  margin-right: 8px;
+  color: white;
 }
