@@ -1,7 +1,7 @@
 import { Card } from "../Card/Card";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import styles from "./CardsList.module.css";
 export const CardsList = () => {
   const [movies, setMovies] = useState();
   useEffect(() => {
@@ -21,17 +21,12 @@ export const CardsList = () => {
     func();
   }, []);
   //console.log(movies);
-  /*
-  if (movie) {
-    console.log(movie.films[0].name);
-    const names = movie.films.map((x) => x.name);
-    console.log(names);
-  }*/
-
-  /*{movie && (
-        <>
-          <p>{movie}</p>
-        </>
-      )}*/
-  return <>{movies && <Card data={movies}></Card>}</>;
+  return (
+    <>
+      <div className={styles.all}>
+        {movies &&
+          movies.map((film) => <Card film={film} key={film.id}></Card>)}
+      </div>
+    </>
+  );
 };

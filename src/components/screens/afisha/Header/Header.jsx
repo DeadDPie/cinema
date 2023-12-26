@@ -1,5 +1,10 @@
+import { useState } from "react";
 import styles from "./Header.module.css";
 export const Header = () => {
+  const [search, setSearch] = useState("");
+  const searchFilm = (e) => {
+    console.log(search);
+  };
   return (
     <>
       <header className={styles.header}>
@@ -7,9 +12,14 @@ export const Header = () => {
           Logo
         </a>
         <div className={styles.box}>
-          <input type="text" placeholder="Search" onChange={() => {}} />
+          <input
+            type="text"
+            placeholder="Search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
           <a href="#">
-            <i class="bx bx-search" onClick={() => {}}></i>
+            <i className="bx bx-search" onClick={searchFilm}></i>
           </a>
         </div>
         <nav>
