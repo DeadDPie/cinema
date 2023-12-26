@@ -1,6 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 .item {
+  display: flex;
+  flex-direction: column;
   border: 1px solid #fff;
   font-size: large;
   width: 300px;
+  height: fit-content;
   margin: 30px;
+  box-sizing: border-box; /*дочерние элементы распологались внутри*/
+  padding: 20px;
+}
+.item button {
+  background-color: #f55a5a;
+  width: 156px;
+  height: 40px;
+  border: 2px;
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  size: 18px;
+  height: 24px;
+  box-align: Center;
+  margin: 10px;
+}
+.rating {
+  color: #e2b33a;
+  font: "Roboto", sans-serif;
+  font-weight: 400;
+  size: 14px;
+  height: 14px;
+  margin: 5px;
+  padding: 5px;
+}
+.item h3 {
+  font: "Roboto", sans-serif;
+  font-weight: 400;
+  size: 15px;
+  color: #949494;
+  margin: 5px;
+}
+.item i {
+  margin-top: 5px;
+  margin-left: 5px;
+  color: #6f6464;
+}
+.item h2 {
+  font: "Roboto", sans-serif;
+  font-weight: 700;
+  size: 20px;
+  margin: 5px;
+  margin-bottom: 15px;
+}
+.about {
+  background-color: #b89e9e;
+  width: 136px;
+  border-radius: 6px, 6px, 0px, 0px;
+  font: "Roboto", sans-serif;
+  font-weight: 500;
+  size: 14px;
+  align-items: Center;
+  padding: 5px;
+}
+
+.image {
+  width: 150px;
+  height: 150px;
 }
