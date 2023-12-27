@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Afisha } from "./screens/afisha/Afisha/Afisha";
-import { FilmPage } from "./screens/filmpage/FilmPage";
+import { FilmPage } from "./screens/filmpage/FilmPage/FilmPage";
 
 export const Router = () => {
   return (
