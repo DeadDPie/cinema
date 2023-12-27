@@ -1,13 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Header } from "@header/Header";
 import { FilmInfo } from "../FilmInfo/FilmInfo";
 export const FilmPage = () => {
   const [movie, setMovie] = useState();
   const { filmId } = useParams();
 
-  console.log(filmId);
   useEffect(() => {
     const func = async () => {
       const options = {
@@ -29,7 +28,7 @@ export const FilmPage = () => {
   return (
     <>
       <Header />
-      <div>{movie && <FilmInfo movie={movie} key={movie.id}></FilmInfo>}</div>
+      <div>{movie && <FilmInfo film={movie}></FilmInfo>}</div>
     </>
   );
 };
