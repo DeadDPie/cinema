@@ -1,8 +1,10 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { Header } from "@header/Header";
+import { FilmInfo } from "../FilmInfo/FilmInfo";
 export const FilmPage = () => {
-  const location = useLocation();
+  const [movie, setMovie] = useState();
   const { filmId } = useParams();
 
   console.log(filmId);
@@ -16,7 +18,7 @@ export const FilmPage = () => {
       try {
         const response = await axios.request(options);
         console.log(response.data.film);
-        //setMovies(response.data.films);
+        setMovie(response.data.film);
       } catch (error) {
         console.error(error);
       }
@@ -26,7 +28,8 @@ export const FilmPage = () => {
 
   return (
     <>
-      <p>Filmpage</p>
+      <Header />
+      <div>{movie && <FilmInfo movie={movie} key={movie.id}></FilmInfo>}</div>
     </>
   );
 };
