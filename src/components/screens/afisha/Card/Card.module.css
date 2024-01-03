@@ -20,6 +20,7 @@
   box-align: Center;
   margin: 5px;
   color: white;
+  cursor: pointer;
 }
 .rating {
   color: #e2b33a;

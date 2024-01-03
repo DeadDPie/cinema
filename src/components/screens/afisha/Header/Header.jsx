@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
-import cinemaLogo from "../../../../../public/logo.png";
+
 export const Header = () => {
   const [search, setSearch] = useState("");
   const searchFilm = (e) => {
@@ -12,7 +12,7 @@ export const Header = () => {
     <>
       <header className={styles.header}>
         <a href="#" onClick={() => nav(`/`)} className={styles.logo}>
-          <img src={cinemaLogo} alt="cinema logo" />
+          SHIFTcinema
         </a>
         <div className={styles.box}>
           <input

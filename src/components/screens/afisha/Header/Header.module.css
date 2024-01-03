@@ -9,9 +9,10 @@
   background-color: rgba(0, 0, 0, 0.095);
 }
 .logo {
-  width: 280px;
-  height: 55px;
-  margin: 20px;
+  font-size: 40px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
 }
 .a {
   font-size: 18px;
