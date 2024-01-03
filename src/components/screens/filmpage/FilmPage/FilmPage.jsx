@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Header } from "@header/Header";
 import { FilmInfo } from "../FilmInfo/FilmInfo";
+import { Schedule } from "../Schedule/Schedule";
+import { BuyingSeats } from "../BuyingSeats/BuyingSeats";
 export const FilmPage = () => {
   const [movie, setMovie] = useState();
   const { filmId } = useParams();
 
-  console.log(filmId);
   useEffect(() => {
     const func = async () => {
       const options = {
@@ -17,7 +18,7 @@ export const FilmPage = () => {
 
       try {
         const response = await axios.request(options);
-        console.log(response.data.film);
+        //console.log(response.data.film);
         setMovie(response.data.film);
       } catch (error) {
         console.error(error);
@@ -29,7 +30,9 @@ export const FilmPage = () => {
   return (
     <>
       <Header />
-      <div>{movie && <FilmInfo movie={movie} key={movie.id}></FilmInfo>}</div>
+      <div>{movie && <FilmInfo film={movie}></FilmInfo>}</div>
+      <Schedule></Schedule>
+      <BuyingSeats></BuyingSeats>
     </>
   );
 };
