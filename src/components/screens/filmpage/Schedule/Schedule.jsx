@@ -23,15 +23,6 @@ export const Schedule = () => {
     };
     func();
   }, []);
-  /**<button>{schedule.seances.time}</button> {schedules &&
-          schedules.map((schedule) => {
-            schedule.seances.map((seance) => <button>ddf{seance}</button>);
-          })}
-          {schedules &&
-          schedules.map((schedule) => (
-            <DateButton seances={schedule.seances}>{schedule.date}</DateButton>
-          ))}*/
-  //console.log(schedules.map((schedule) => schedule.seances));
 
   let tm = [];
   if (schedules) {
@@ -48,11 +39,7 @@ export const Schedule = () => {
     console.log(seances);
   }
   const [seancesDate, setSeancesDate] = useState();
-  const changeDate = (date) => {
-    //setSeancesDate(seances.filter((d) => d.id === date.id));
-    //возвращает новый массив, отфильтрованный по какому-то условию,
-    //здесь мы просто проверяем id
-  };
+  const [cinema, setCinema] = useState();
 
   return (
     <>
@@ -72,9 +59,38 @@ export const Schedule = () => {
       <div>
         {seancesDate &&
           seancesDate.map((seance, index) => (
-            <button key={index}>{seance.time}</button>
+            <button key={index} onClick={() => setCinema(seance.hall)}>
+              {seance.time}
+            </button>
           ))}
       </div>
+      <hr style={{ margin: "15px 0" }} />
+      <div> {cinema && <p>Hallname: {cinema.name}</p>}</div>
+      <div>
+        {cinema &&
+          cinema.places.map(
+            (row, index) => console.log(row)
+            //row.map((place) => console.log(place))
+          )}
+      </div>
+      <div>
+        {cinema &&
+          cinema.places.map((row, index) => (
+            <div>
+              {row.map((place) => (
+                <button
+                  style={{
+                    color: place.type === "ECONOM" ? "red" : "green",
+                    margin: "5px 10px",
+                  }}
+                >
+                  {place.price}
+                </button>
+              ))}
+            </div>
+          ))}
+      </div>
+      <div></div>
     </>
   );
 };
