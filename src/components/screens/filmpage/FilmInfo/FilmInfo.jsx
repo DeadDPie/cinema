@@ -19,7 +19,6 @@ export const FilmInfo = (props) => {
           <p className={styles.h1}>{film.name}</p>
           <p className={styles.h2}>{film.originalName}</p>
 
-          <div className={styles.ageRating}>{film.ageRating}</div>
           <div className={styles.about}>
             <p>{film.genres.join(", ")}</p>
             <p>{film.releaseDate}</p>

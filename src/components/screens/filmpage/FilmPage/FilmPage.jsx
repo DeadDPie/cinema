@@ -5,6 +5,7 @@ import { Header } from "@header/Header";
 import { FilmInfo } from "../FilmInfo/FilmInfo";
 import { Schedule } from "../Schedule/Schedule";
 import { BuyingSeats } from "../BuyingSeats/BuyingSeats";
+import cl from "./FilmPage.module.css";
 export const FilmPage = () => {
   const [movie, setMovie] = useState();
   const { filmId } = useParams();
@@ -30,9 +31,11 @@ export const FilmPage = () => {
   return (
     <>
       <Header />
-      <div>{movie && <FilmInfo film={movie}></FilmInfo>}</div>
-      <Schedule></Schedule>
-      <BuyingSeats></BuyingSeats>
+      <div className={cl.all}>
+        <div>{movie && <FilmInfo film={movie}></FilmInfo>}</div>
+        <Schedule></Schedule>
+        <BuyingSeats></BuyingSeats>
+      </div>
     </>
   );
 };

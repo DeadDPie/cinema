@@ -29,47 +29,38 @@
   font: "Roboto", sans-serif;
   font-weight: 400;
   size: 14px;
-  margin: 5px;
-  padding: 5px;
+  margin: 10px 0px;
 }
 .item .h2 {
   font: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 20px;
   color: #949494;
-  margin-left: 10px;
+  margin: 5px 0px;
 }
 .item i {
-  margin-left: 10px;
+  margin-right: 10px;
   margin-top: 5px;
   color: #6f6464;
 }
 .item .h1 {
   font: "Roboto", sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 28px;
   margin-top: 20px;
   margin-bottom: 5px;
-  margin-left: 10px;
+  color: var(--darkgrey, #252525);
+  font-size: 32px;
+  line-height: 32px; /* 100% */
 }
 
 .image {
   width: 250px;
   height: 340px;
   border-radius: 8px;
-  margin: 50px 40px 20px 60px;
+  margin: 50px 20px 20px 60px;
 }
-.ageRating {
-  background-color: #3f3737ef;
-  border-radius: 5px;
-  min-width: 20px;
-  max-width: 60px;
-  padding: 5px;
-  margin-left: auto;
-  margin-top: 10px;
-  margin-right: 8px;
-  color: white;
-}
+
 .about {
-  margin-left: 10px;
+  margin: 5px 0px;
 }

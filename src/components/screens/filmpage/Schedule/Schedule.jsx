@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-//import { DateButton } from "./DateButton";
+import cl from "./Schedule.module.css";
 
 export const Schedule = () => {
   const [schedules, setSchedules] = useState();
@@ -24,30 +24,25 @@ export const Schedule = () => {
     func();
   }, []);
 
-  let tm = [];
   if (schedules) {
     const seances = schedules.map((schedule) => schedule.seances);
-    for (let date of seances) {
-      tm = [];
-      for (let time of date) {
-        tm.push(time);
-        //console.log(time);
-      }
-      //console.log(tm);
-      //console.log(tm[0]);
-    }
-    console.log(seances);
   }
   const [seancesDate, setSeancesDate] = useState();
   const [cinema, setCinema] = useState();
+  const [place, setPlace] = useState({ row: "", placeNumber: "", price: "" });
 
   return (
     <>
-      <p>schedule</p>
+      <p style={{ color: "salmon", margin: "10px", fontSize: "48px" }}>
+        Schedule
+      </p>
       <div>
         {schedules &&
           schedules.map((schedule, index) => (
             <button
+              className={`${cl.btn} ${
+                seancesDate === schedule.seances ? cl.clicked : ""
+              }`}
               key={index}
               onClick={() => setSeancesDate(schedule.seances)}
             >
@@ -59,38 +54,69 @@ export const Schedule = () => {
       <div>
         {seancesDate &&
           seancesDate.map((seance, index) => (
-            <button key={index} onClick={() => setCinema(seance.hall)}>
+            <button
+              className={`${cl.time} ${
+                seance.hall.name === "Red"
+                  ? cl.redHall
+                  : seance.hall.name === "Green"
+                  ? cl.greenHall
+                  : cl.blueHall
+              }`}
+              key={index}
+              onClick={() => setCinema(seance.hall)}
+            >
               {seance.time}
             </button>
           ))}
       </div>
-      <hr style={{ margin: "15px 0" }} />
-      <div> {cinema && <p>Hallname: {cinema.name}</p>}</div>
-      <div>
-        {cinema &&
-          cinema.places.map(
-            (row, index) => console.log(row)
-            //row.map((place) => console.log(place))
-          )}
-      </div>
-      <div>
-        {cinema &&
-          cinema.places.map((row, index) => (
-            <div>
-              {row.map((place) => (
-                <button
-                  style={{
-                    color: place.type === "ECONOM" ? "red" : "green",
-                    margin: "5px 10px",
-                  }}
-                >
-                  {place.price}
-                </button>
+
+      {cinema && (
+        <div className={cl.schedule}>
+          <div className={cl.cinema}>
+            {cinema &&
+              cinema.places.map((row, indexRow) => (
+                <div>
+                  {row.map((place, indexPlace) => (
+                    <button
+                      onClick={() =>
+                        setPlace({
+                          ...place,
+                          row: indexRow + 1,
+                          price: place.price,
+                          placeNumber: indexPlace + 1,
+                        })
+                      }
+                      className={`${cl.place} ${
+                        place.type === "ECONOM" ? cl.econom : cl.comfort
+                      } ${place.price == 0 ? cl.blocked : ""}`}
+                    ></button>
+                  ))}
+                </div>
               ))}
+          </div>
+          <div className={cl.ticket}>
+            <div className={cl.info}>
+              <div>
+                <p className={cl.h1}>Hallname: </p>
+                {cinema && <p>{cinema.name}</p>}
+              </div>
+              <p className={cl.h1}>Film:</p>
+              <p>here must be film name</p>
+              <p className={cl.h1}>Places</p>
+              <p>
+                Row: {place.row} Seat number: {place.placeNumber}
+              </p>
             </div>
-          ))}
-      </div>
-      <div></div>
+            <div className={cl.cost}>
+              <p>Full price</p>
+              <p>{place.price}</p>
+              <button className={cl.btn}>
+                Buy <i className="bx bx-credit-card-front"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
