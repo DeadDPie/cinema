@@ -5,6 +5,7 @@ import styles from "./FilmInfo.module.css";
 
 export const FilmInfo = (props) => {
   const { film } = props;
+
   //console.log(film);
   /**/
   return (

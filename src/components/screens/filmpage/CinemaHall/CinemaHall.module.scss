@@ -1,0 +1,97 @@
+.schedule {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.cinema {
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 15px;
+}
+
+.time {
+  background-color: white;
+  width: 90px;
+  height: 40px;
+  border-radius: 15px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  box-align: Center;
+  margin: 15px;
+  cursor: pointer;
+}
+
+.place {
+  background-color: white;
+  width: 35px;
+  height: 50px;
+  border-radius: 8px;
+  border: 3px solid green;
+  margin: 5px 10px;
+  cursor: pointer;
+
+  &.econom {
+    border: 3px solid gray;
+  }
+
+  &.comfort {
+    border: 3px solid #e2b33a;
+  }
+
+  &.blocked {
+    border: 0px;
+    background-color: gray;
+    color: gray;
+  }
+}
+
+.ticket {
+  font-size: 20px;
+
+  .info {
+    border: 3px dashed grey;
+    padding: 20px;
+    height: 250px;
+    border-radius: 16px;
+
+    .h1 {
+      color: #b89e9e;
+      font-family: "Roboto", sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      margin-top: 5px;
+    }
+
+    p {
+      font-size: 20px;
+      color: #585858;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+  }
+
+  .cost {
+    font-size: 20px;
+    color: #585858;
+    font-weight: 600;
+    height: 110px;
+    text-align: right;
+    border: 3px dashed grey;
+    border-top: none;
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+  .btn {
+    font-size: 16px;
+    color: white;
+    border: #f55a5a;
+    background-color: #f55a5a;
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+  }
+}

@@ -27,13 +27,12 @@ export const FilmPage = () => {
     };
     func();
   }, []);
-
   return (
     <>
       <Header />
       <div className={cl.all}>
-        <div>{movie && <FilmInfo film={movie}></FilmInfo>}</div>
-        <Schedule></Schedule>
+        <div>{movie && <FilmInfo film={movie} />}</div>
+        {movie && <Schedule name={movie.name}></Schedule>}
         <BuyingSeats></BuyingSeats>
       </div>
     </>
