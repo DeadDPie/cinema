@@ -5,7 +5,7 @@ import cl from "./Schedule.module.scss";
 import { ModalDetailsPayment } from "../ModalDetailsPayment/ModalDetailsPayment";
 import { Sessions } from "../Sessions/Sessions";
 import { CinemaHall } from "../CinemaHall/CinemaHall";
-
+import { UserPaymentForm } from "../UserPaymentForm/UserPaymentForm";
 export const Schedule = ({ name }) => {
   const [schedules, setSchedules] = useState();
   const { filmId } = useParams();
@@ -46,7 +46,7 @@ export const Schedule = ({ name }) => {
   return (
     <>
       <ModalDetailsPayment visible={modal} setVisisble={setModal}>
-        <button>Continue</button>
+        <UserPaymentForm></UserPaymentForm>
       </ModalDetailsPayment>
       <p style={{ color: "salmon", margin: "10px", fontSize: "48px" }}>
         Schedule

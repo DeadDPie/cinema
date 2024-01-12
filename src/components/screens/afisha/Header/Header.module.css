@@ -47,6 +47,9 @@
   margin-left: 30px;
   width: 100%;
 }
+.box i {
+  color: #8b6767;
+}
 .box:hover i {
   color: #c98686;
 }

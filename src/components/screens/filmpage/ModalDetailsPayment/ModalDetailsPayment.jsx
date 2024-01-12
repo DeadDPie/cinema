@@ -7,7 +7,7 @@ export const ModalDetailsPayment = ({ children, visible, setVisisble }) => {
   }
   return (
     <div className={rootClassses.join(" ")} onClick={() => setVisisble(false)}>
-      <div className={cl.myModalContent} onClick={(e) => e.stopPropagation}>
+      <div className={cl.myModalContent} onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
     </div>
