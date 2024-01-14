@@ -1,7 +1,24 @@
 import React, { useState } from "react";
 import cl from "./Sessions.module.scss";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  choseTime,
+  choseDate,
+} from "../../../../store/paymentDetails/paymentDetails.slice";
 
 export const Sessions = ({ schedules, setHall }) => {
+  const dispatch = useDispatch();
+  const buy = (seance) => {
+    setHall(seance.hall);
+    dispatch(choseTime(seance.time));
+    console.log(seance.time);
+  };
+  const choseDateToBuy = (schedule) => {
+    setSeancesDate(schedule.seances);
+    dispatch(choseDate(schedule.date));
+    console.log(schedule.date);
+  };
+
   const [seancesDate, setSeancesDate] = useState();
   return (
     <div className={cl.schedule}>
@@ -13,7 +30,7 @@ export const Sessions = ({ schedules, setHall }) => {
                 seancesDate === schedule.seances ? cl.clicked : ""
               }`}
               key={index}
-              onClick={() => setSeancesDate(schedule.seances)}
+              onClick={() => choseDateToBuy(schedule)}
             >
               {schedule.date}
             </button>
@@ -32,7 +49,7 @@ export const Sessions = ({ schedules, setHall }) => {
                   : cl.blueHall
               }`}
               key={index}
-              onClick={() => setHall(seance.hall)}
+              onClick={() => buy(seance)}
             >
               {seance.time}
             </button>

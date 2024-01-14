@@ -26,12 +26,6 @@ export const Header = () => {
           </a>
         </div>
         <nav>
-          <a href="#" className={styles.a}>
-            Home
-          </a>
-          <a href="#" className={styles.a}>
-            About
-          </a>
           <button className={styles.btn}>Login</button>
         </nav>
       </header>

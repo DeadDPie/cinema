@@ -1,6 +1,19 @@
 import React from "react";
 import cl from "./Payment.module.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setSuccessful } from "./../../../store/paymentDetails/paymentDetails.slice";
+
 export const Payment = () => {
+  const nav = useNavigate();
+  const dispatch = useDispatch();
+
+  const movieId = useSelector((state) => state.payment.filmId);
+
+  const buyTicket = () => {
+    dispatch(setSuccessful(true));
+    nav(`/film/${movieId}`);
+  };
   return (
     <div className={cl.payment}>
       <h2>Enter your payment details</h2>
@@ -24,7 +37,9 @@ export const Payment = () => {
         </div>
       </div>
 
-      <button className={cl.btn}>Pay</button>
+      <button className={cl.btn} onClick={() => buyTicket()}>
+        Pay
+      </button>
     </div>
   );
 };

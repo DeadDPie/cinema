@@ -1,15 +1,50 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = [];
+
 export const paymentSlice = createSlice({
   name: "payment",
-  initialState,
+  initialState: {
+    filmId: "",
+    film: "",
+    date: "",
+    time: "",
+    places: { row: "", seat: "" },
+    isSuccessful: false,
+
+    name: "",
+  },
   reducers: {
-    addToStore: (state, { payload: data }) => {
-      state.push(data);
+    setSuccessful: (state, { payload: successfullyPaid }) => {
+      state.isSuccessful = successfullyPaid;
+    },
+    setFilmId: (state, { payload: movieId }) => {
+      state.filmId = movieId;
+    },
+    choseFilm: (state, { payload: film }) => {
+      state.film = film;
+    },
+    choseDate: (state, { payload: date }) => {
+      state.date = date;
+    },
+    choseTime: (state, { payload: time }) => {
+      state.time = time;
+    },
+    choseName: (state, { payload: name }) => {
+      state.name = name;
+    },
+    chosePlaces: (state, { payload: places }) => {
+      state.places.row = places.row;
+      state.places.seat = places.placeNumber;
     },
   },
 });
+export const {
+  choseFilm,
+  choseDate,
+  choseTime,
+  choseName,
+  chosePlaces,
+  setFilmId,
+  setSuccessful,
+} = paymentSlice.actions;
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
-
-export default counterSlice.reducer;
+export default paymentSlice.reducer;

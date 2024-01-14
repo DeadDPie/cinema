@@ -1,7 +1,25 @@
 import React, { useState } from "react";
 import cl from "./CinemaHall.module.scss";
-export const CinemaHall = ({ name, cinema, callbackModal }) => {
+import { useDispatch } from "react-redux";
+import {
+  choseFilm,
+  chosePlaces,
+  setFilmId,
+  setSuccessful,
+} from "../../../../store/paymentDetails/paymentDetails.slice";
+
+export const CinemaHall = ({ name, cinema, movieId, callbackModal }) => {
+  const dispatch = useDispatch();
   const [place, setPlace] = useState({ row: "", placeNumber: "", price: "" });
+  console.log(movieId);
+  const buy = (name, place) => {
+    dispatch(choseFilm(name));
+    dispatch(chosePlaces(place));
+    dispatch(setFilmId(movieId));
+    dispatch(setSuccessful(false));
+
+    callbackModal(true);
+  };
   return (
     <div>
       <div className={cl.schedule}>
@@ -43,7 +61,7 @@ export const CinemaHall = ({ name, cinema, callbackModal }) => {
           <div className={cl.cost}>
             <p>Full price</p>
             <p>{place.price}</p>
-            <button className={cl.btn} onClick={() => callbackModal(true)}>
+            <button className={cl.btn} onClick={() => buy(name, place)}>
               Buy <i className="bx bx-credit-card-front"></i>
             </button>
           </div>

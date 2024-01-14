@@ -6,7 +6,8 @@ import { ModalDetailsPayment } from "../ModalDetailsPayment/ModalDetailsPayment"
 import { Sessions } from "../Sessions/Sessions";
 import { CinemaHall } from "../CinemaHall/CinemaHall";
 import { UserPaymentForm } from "../UserPaymentForm/UserPaymentForm";
-export const Schedule = ({ name }) => {
+import { SuccessfullyPaid } from "../SuccessfullyPaid/SuccessfullyPaid";
+export const Schedule = ({ name, movieId }) => {
   const [schedules, setSchedules] = useState();
   const { filmId } = useParams();
   useEffect(() => {
@@ -56,6 +57,7 @@ export const Schedule = ({ name }) => {
       {cinema && (
         <CinemaHall
           name={name}
+          movieId={movieId}
           cinema={cinema}
           callbackModal={callbackModal}
         ></CinemaHall>
@@ -63,3 +65,6 @@ export const Schedule = ({ name }) => {
     </>
   );
 };
+/*<ModalDetailsPayment visible={modal} setVisisble={setModal}>
+        <SuccessfullyPaid />
+      </ModalDetailsPayment>*/

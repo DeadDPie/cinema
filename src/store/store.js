@@ -1,12 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./tmp/tmp.slice";
+
+import paymentReducer from "./paymentDetails/paymentDetails.slice";
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    payment: paymentReducer,
   },
 });
-// import { configureStore } from "@reduxjs/toolkit";
-
-// export const store = configureStore({
-//   reducer: {},
-// });

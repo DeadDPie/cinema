@@ -1,16 +1,7 @@
 import React from "react";
 import cl from "./UserPaymentForm.module.scss";
-import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "../../../../store/tmp/tmp.slice";
 import { useNavigate } from "react-router-dom";
 export const UserPaymentForm = () => {
-  const count = useSelector((state) => state.counter.value);
-  const dispatch = useDispatch();
-
-  const buyTicket = () => {
-    dispatch(increment());
-    nav("/payment");
-  };
   const nav = useNavigate();
   return (
     <div className={cl.form}>
@@ -33,7 +24,7 @@ export const UserPaymentForm = () => {
           <input type="text" />
         </div>
         <div className={cl.btn}>
-          <button onClick={() => buyTicket()}>Continue</button>
+          <button onClick={() => nav("/payment")}>Continue</button>
         </div>
       </form>
     </div>
