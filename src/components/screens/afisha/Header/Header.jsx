@@ -26,7 +26,9 @@ export const Header = () => {
           </a>
         </div>
         <nav>
-          <button className={styles.btn}>Login</button>
+          <button onClick={() => nav("/auth")} className={styles.btn}>
+            Login
+          </button>
         </nav>
       </header>
     </>

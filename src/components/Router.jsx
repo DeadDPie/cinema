@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { Afisha } from "./screens/afisha/Afisha/Afisha";
 import { FilmPage } from "./screens/filmpage/FilmPage/FilmPage";
 import { Payment } from "./screens/payment/Payment";
+import { Auth } from "./screens/auth/Auth";
 
 export const Router = () => {
   return (
@@ -9,6 +10,7 @@ export const Router = () => {
       <Route path="/" element={<Afisha />} />
       <Route path="/film/:filmId" element={<FilmPage />} />
       <Route path="/payment" element={<Payment />} />
+      <Route path="/auth" element={<Auth />} />
       <Route path="*" element={<div>Not found</div>} />
     </Routes>
   );

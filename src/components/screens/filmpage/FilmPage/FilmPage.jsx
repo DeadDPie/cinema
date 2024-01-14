@@ -8,7 +8,7 @@ import cl from "./FilmPage.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { ModalDetailsPayment } from "../ModalDetailsPayment/ModalDetailsPayment";
 import { setSuccessful } from "./../../../../store/paymentDetails/paymentDetails.slice";
-
+import { SuccessfullyPaid } from "../SuccessfullyPaid/SuccessfullyPaid";
 export const FilmPage = () => {
   const isSuccessful = useSelector((state) => state.payment.isSuccessful);
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ export const FilmPage = () => {
             visible={!successfullyPaid}
             setVisisble={handleSuccessfulPayment}
           >
-            dff
+            <SuccessfullyPaid />
           </ModalDetailsPayment>
         )}
       </div>
