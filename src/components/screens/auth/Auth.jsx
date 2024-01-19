@@ -9,35 +9,48 @@ export const Auth = () => {
   const [phone, setPhone] = useState();
   const [data, setData] = useState();
 
+  //89990009999
   const handleButtonClick = async () => {
-    //this is how it must work but it doesnt work
-    // const options = {
-    //   method: "POST",
-    //   url: "https://shift-backend.onrender.com/users/signin",
-    //   body: { phone: "89990009999", code: parseInt(code) },
-    // };
-    // try {
-    //   const response = await axios.request(options);
-    //   console.log(response.data);
-    //   setData(response.data);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    const options = {
+      method: "POST",
+      url: "https://shift-backend.onrender.com/users/signin",
+      data: { phone: `${phone}`, code: parseInt(code) },
+    };
+    try {
+      const response = await axios.request(options);
+      console.log(response.data);
+      setData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
 
-    setData({
-      success: true,
-      user: {
-        _id: "64a2fde6220d96d29659f7d2",
-        phone: "89990009999",
-      },
-      token:
-        "tokenIsNotStaticItCanChange.eyJwaG9uZSI6Ijg5OTkwMDA5OTk5IiwiaWF0IjoxNzA1MzM2OTUzfQ.9G2lFBj4BtEjhQMJleZEmGx-dVewGJTzZK-pQ3mPin8",
-    });
+    // setData({
+    //   success: true,
+    //   user: {
+    //     _id: "64a2fde6220d96d29659f7d2",
+    //     phone: "89990009999",
+    //   },
+    //   token:
+    //     "tokenIsNotStaticItCanChange.eyJwaG9uZSI6Ijg5OTkwMDA5OTk5IiwiaWF0IjoxNzA1MzM2OTUzfQ.9G2lFBj4BtEjhQMJleZEmGx-dVewGJTzZK-pQ3mPin8",
+    // });
   };
   {
     //так делать вообще правильно или это костыль из-за промиса
-    data && data.success && nav("/account");
+    data && data.success && nav("/account", { state: { token: data.token } });
   }
+  const handleRequestCode = async () => {
+    const options = {
+      method: "POST",
+      url: "https://shift-backend.onrender.com/auth/otp",
+      data: { phone: `${phone}` },
+    };
+    try {
+      const response = await axios.request(options);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div>
       <div className={cl.auth}>
@@ -62,12 +75,7 @@ export const Auth = () => {
           </div>
         </div>
         <div>
-          <button
-            className={cl.codeBtn}
-            onClick={() =>
-              console.log("phone  " + phone, "code " + code + " <3" + data)
-            }
-          >
+          <button className={cl.codeBtn} onClick={handleRequestCode}>
             Request code
           </button>
           <button className={cl.btn} onClick={handleButtonClick}>

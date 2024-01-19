@@ -1,14 +1,21 @@
-// import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-// export const userSlice = createSlice({
-//   name: "user",
-//   initialState: {
-//     value: 0,
-//   },
-//   reducers: {
-//   },
-// });
+export const userSlice = createSlice({
+  name: "user",
+  initialState: {
+    isAuthorised: false,
+    firstname: "firstname",
+    lastname: "lastname",
+    middlename: "middlename",
+    phone: "89990009999",
+  },
+  reducers: {
+    setAuthorised: (state, { payload: isUserAuthorised }) => {
+      state.isAuthorised = isUserAuthorised;
+    },
+  },
+});
 
-// export const {  } = counterSlice.actions;
+export const { setAuthorised } = userSlice.actions;
 
-// export default counterSlice.reducer;
+export default userSlice.reducer;

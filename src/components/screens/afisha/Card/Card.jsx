@@ -3,7 +3,7 @@ import styles from "./Card.module.css";
 
 export const Card = (props) => {
   const { film } = props;
-  console.log(film);
+  //console.log(film);
   const nav = useNavigate();
   return (
     <>

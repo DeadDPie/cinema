@@ -1,19 +1,89 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import cl from "./Payment.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setSuccessful } from "./../../../store/paymentDetails/paymentDetails.slice";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 export const Payment = () => {
+  const location = useLocation();
+  const user = location.state.user;
+
+  console.log(user);
+
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const movieId = useSelector((state) => state.payment.filmId);
+  const [data, setData] = useState();
+  const [debitCard, setDebitCard] = useState({
+    pan: "",
+    expireDate: "",
+    cvv: "",
+  });
 
-  const buyTicket = () => {
-    dispatch(setSuccessful(true));
-    nav(`/film/${movieId}`);
+  const movieId = useSelector((state) => state.payment.filmId);
+  const date = useSelector((state) => state.payment.date);
+  const time = useSelector((state) => state.payment.time);
+  const places = useSelector((state) => state.payment.places);
+  /*
+person: {
+          firstname: "firstname",
+          lastname: "lastname",
+          middlename: "middlename",
+          phone: "89990009999",
+        },
+        debitCard: {
+          pan: "1111 1111",
+          expireDate: "11/11",
+          cvv: "111",
+        }, */
+  //{name: 'dfgh', surname: 'dfg', partonymic: 'cvb', phone: 'fghj'}
+  const buyTicket = async () => {
+    const options = {
+      method: "POST",
+      url: "https://shift-backend.onrender.com/cinema/payment",
+      data: {
+        filmId: `${movieId}`,
+        person: {
+          firstname: `${user.name}`,
+          lastname: `${user.surname}`,
+          middlename: `${user.partonymic}`,
+          phone: `${user.phone}`,
+        },
+        debitCard: {
+          pan: `${debitCard.pan}`,
+          expireDate: `${debitCard.expireDate}`,
+          cvv: `${debitCard.cvv}`,
+        },
+        seance: {
+          date: `${date}`,
+          time: `${time}`,
+        },
+        tickets: [
+          {
+            row: parseInt(places.row),
+            column: parseInt(places.seat),
+          },
+        ],
+      },
+    };
+
+    try {
+      const response = await axios.request(options);
+      console.log(response.data);
+      setData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
+  {
+    //так делать вообще правильно или это костыль из-за промиса
+    data &&
+      data.success &&
+      dispatch(setSuccessful(true)) &&
+      nav(`/film/${movieId}`);
+  }
   return (
     <div className={cl.payment}>
       <h2>Enter your payment details</h2>
@@ -22,16 +92,37 @@ export const Payment = () => {
         <div>
           <div className={cl.number}>
             <p>Number*</p>
-            <input type="text" placeholder="0000 0000" />
+            <input
+              type="text"
+              placeholder="0000 0000"
+              value={debitCard.pan || ""}
+              onChange={(e) =>
+                setDebitCard({ ...debitCard, pan: e.target.value })
+              }
+            />
           </div>
           <div className={cl.other}>
             <div className={cl.date}>
               <p>Date</p>
-              <input type="text" placeholder="00/00" />
+              <input
+                type="text"
+                placeholder="00/00"
+                value={debitCard.expireDate || ""}
+                onChange={(e) =>
+                  setDebitCard({ ...debitCard, expireDate: e.target.value })
+                }
+              />
             </div>
             <div className={cl.cvv}>
               <p>CVV*</p>
-              <input type="text" placeholder="0000" />
+              <input
+                type="text"
+                placeholder="0000"
+                value={debitCard.cvv || ""}
+                onChange={(e) =>
+                  setDebitCard({ ...debitCard, cvv: e.target.value })
+                }
+              />
             </div>
           </div>
         </div>

@@ -5,6 +5,38 @@ body {
   flex-direction: column;
   margin: auto;
 }
+.header {
+  width: 100%;
+  padding: 15px 100px;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background-color: rgba(154, 44, 44, 0.232);
+  margin-bottom: 20px;
+  .logo {
+    font-size: 40px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    width: 260px;
+  }
+  .btnLogOut {
+    width: 120px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 40px;
+  }
+}
 .Account {
   display: flex;
   justify-content: center;
