@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Header } from "@header/Header";
 import { FilmInfo } from "../FilmInfo/FilmInfo";
 import { Schedule } from "../Schedule/Schedule";
-import cl from "./FilmPage.module.css";
+import cl from "./FilmPage.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { ModalDetailsPayment } from "../ModalDetailsPayment/ModalDetailsPayment";
 import { setSuccessful } from "./../../../../store/paymentDetails/paymentDetails.slice";

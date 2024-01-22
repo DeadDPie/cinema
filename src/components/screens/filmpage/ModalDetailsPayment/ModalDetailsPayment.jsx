@@ -1,16 +1,12 @@
 import React from "react";
-import cl from "./ModalDetailsPayment.module.css";
+import cl from "./ModalDetailsPayment.module.scss";
 export const ModalDetailsPayment = ({ children, visible, setVisisble }) => {
-  const rootClassses = [cl.myModal];
-  if (visible) {
-    rootClassses.push(cl.active);
-  }
   return (
     <div
-      className={`${cl.myModal} ${visible && cl.active}`}
+      className={`${cl.Modal} ${visible && cl.active}`}
       onClick={() => setVisisble(false)}
     >
-      <div className={cl.myModalContent} onClick={(e) => e.stopPropagation()}>
+      <div className={cl.ModalContent} onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
     </div>

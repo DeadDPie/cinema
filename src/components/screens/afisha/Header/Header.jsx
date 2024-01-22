@@ -1,8 +1,6 @@
 import { useState } from "react";
-import cl from "./Header.module.css";
+import cl from "./Header.module.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-//import setAuthorised from "../../../../store/user/user.slice";
 import Cookies from "js-cookie";
 
 export const Header = () => {
