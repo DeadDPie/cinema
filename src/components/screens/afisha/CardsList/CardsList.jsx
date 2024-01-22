@@ -1,7 +1,10 @@
-import { Card } from "../Card/Card";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+
+import { Card } from "../Card/Card";
+
 import cl from "./CardsList.module.scss";
+
 export const CardsList = () => {
   const [movies, setMovies] = useState();
   useEffect(() => {

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import cl from "./Payment.module.scss";
+import React, { useState } from "react";
+import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setSuccessful } from "./../../../store/paymentDetails/paymentDetails.slice";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
 
+import cl from "./Payment.module.scss";
 export const Payment = () => {
   const location = useLocation();
   const user = location.state.user;

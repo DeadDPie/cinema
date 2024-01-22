@@ -1,6 +1,7 @@
-import cl from "./Afisha.module.scss";
 import { Header } from "../Header/Header";
 import { CardsList } from "../CardsList/CardsList";
+
+import cl from "./Afisha.module.scss";
 
 export const Afisha = () => {
   return (

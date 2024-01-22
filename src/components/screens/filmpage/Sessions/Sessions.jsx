@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import cl from "./Sessions.module.scss";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   choseTime,
   choseDate,
 } from "../../../../store/paymentDetails/paymentDetails.slice";
 
+import cl from "./Sessions.module.scss";
 export const Sessions = ({ schedules, setHall }) => {
   const dispatch = useDispatch();
   const buy = (seance) => {

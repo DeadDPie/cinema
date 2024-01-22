@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import cl from "./Ticket.module.scss";
 import axios from "axios";
+
+import cl from "./Ticket.module.scss";
+
 export const Ticket = ({ token, ticket }) => {
   const [movie, setMovie] = useState();
   console.log(ticket);

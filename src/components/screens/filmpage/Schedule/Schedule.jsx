@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import cl from "./Schedule.module.scss";
+import Cookies from "js-cookie";
+
 import { ModalDetailsPayment } from "../ModalDetailsPayment/ModalDetailsPayment";
 import { Sessions } from "../Sessions/Sessions";
 import { CinemaHall } from "../CinemaHall/CinemaHall";
 import { UserPaymentForm } from "../UserPaymentForm/UserPaymentForm";
-import { SuccessfullyPaid } from "../SuccessfullyPaid/SuccessfullyPaid";
-import { useSelector, useDispatch } from "react-redux";
-import Cookies from "js-cookie";
 
 export const Schedule = ({ name, movieId }) => {
   const token = Cookies.get("userToken");
@@ -67,7 +65,7 @@ export const Schedule = ({ name, movieId }) => {
   };
 
   const isUserAuthorised = token && token.length > 0 ? true : false;
-  //const isUserAuthorised = false;
+
   //const isUserAuthorised = useSelector((state) => state.user.isAuthorised);
   //const user = useSelector((state) => state.user);
   return (
@@ -78,9 +76,6 @@ export const Schedule = ({ name, movieId }) => {
         </ModalDetailsPayment>
       )}
 
-      {/* <ModalDetailsPayment visible={modal} setVisisble={setModal}>
-        <UserPaymentForm></UserPaymentForm>
-      </ModalDetailsPayment> */}
       <p style={{ color: "salmon", margin: "10px", fontSize: "48px" }}>
         Schedule
       </p>

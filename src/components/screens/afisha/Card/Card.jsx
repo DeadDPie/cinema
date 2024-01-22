@@ -3,7 +3,6 @@ import cl from "./Card.module.scss";
 
 export const Card = (props) => {
   const { film } = props;
-  //console.log(film);
   const navigate = useNavigate();
   return (
     <>

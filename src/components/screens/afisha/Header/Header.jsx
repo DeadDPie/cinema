@@ -1,8 +1,8 @@
 import { useState } from "react";
-import cl from "./Header.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
+import cl from "./Header.module.scss";
 export const Header = () => {
   const token = Cookies.get("userToken");
 

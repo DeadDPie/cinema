@@ -17,7 +17,7 @@ body {
     text-align: center;
     font-family: Roboto;
     font-size: 36px;
-    font-style: normal;
+
     font-weight: 500;
     line-height: 24px; /* 66.667% */
   }
@@ -32,17 +32,14 @@ body {
     color: #704e4e;
     font-family: Roboto;
     font-size: 20px;
-    font-style: normal;
+
     font-weight: 500;
-    line-height: 24px; /* 120% */
   }
   input {
     color: var(--darkgrey, #252525);
     font-family: Roboto;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px; /* 120% */
+
     width: 340px;
     height: 48px;
     flex-shrink: 0;
@@ -60,7 +57,7 @@ body {
   text-align: center;
   font-family: Roboto;
   font-size: 18px;
-  font-style: normal;
+
   font-weight: 500;
   line-height: 24px; /* 133.333% */
   width: 341px;
@@ -82,7 +79,7 @@ body {
   text-align: center;
   font-family: Roboto;
   font-size: 18px;
-  font-style: normal;
+
   font-weight: 500;
   line-height: 24px; /* 133.333% */
 }

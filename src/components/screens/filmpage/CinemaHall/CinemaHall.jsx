@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import cl from "./CinemaHall.module.scss";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -10,7 +9,8 @@ import {
 } from "../../../../store/paymentDetails/paymentDetails.slice";
 import Cookies from "js-cookie";
 import { setPhone } from "../../../../store/user/user.slice";
-import axios from "axios";
+
+import cl from "./CinemaHall.module.scss";
 
 export const CinemaHall = ({ user, name, cinema, movieId, callbackModal }) => {
   const navigate = useNavigate();

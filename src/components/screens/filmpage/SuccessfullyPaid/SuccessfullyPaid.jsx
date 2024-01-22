@@ -1,6 +1,7 @@
 import React from "react";
-import cl from "./SuccessfullyPaid.module.scss";
 import { useSelector } from "react-redux";
+
+import cl from "./SuccessfullyPaid.module.scss";
 export const SuccessfullyPaid = () => {
   const { film, date, time, places } = useSelector((state) => state.payment);
 

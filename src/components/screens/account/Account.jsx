@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import cl from "./Account.module.scss";
-import { Ticket } from "./ticket/Ticket";
-import axios from "axios";
-import { useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+import { Ticket } from "./ticket/Ticket";
+import { Link } from "react-router-dom";
+
+import cl from "./Account.module.scss";
+
 export const Account = () => {
-  const dispatch = useDispatch();
   const location = useLocation();
   const token = location.state.token;
 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import cl from "./Auth.module.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+import cl from "./Auth.module.scss";
 
 export const Auth = () => {
   const navigate = useNavigate();
@@ -25,23 +26,8 @@ export const Auth = () => {
     } catch (error) {
       console.error(error);
     }
-
-    // setData({
-    //   success: true,
-    //   user: {
-    //     _id: "64a2fde6220d96d29659f7d2",
-    //     phone: "89990009999",
-    //   },
-    //   token:
-    //     "tokenIsNotStaticItCanChange.eyJwaG9uZSI6Ijg5OTkwMDA5OTk5IiwiaWF0IjoxNzA1MzM2OTUzfQ.9G2lFBj4BtEjhQMJleZEmGx-dVewGJTzZK-pQ3mPin8",
-    // });
   };
-  {
-    //так делать вообще правильно или это костыль из-за промиса
-    data &&
-      data.success &&
-      navigate("/account", { state: { token: data.token } });
-  }
+
   const handleRequestCode = async () => {
     const options = {
       method: "POST",

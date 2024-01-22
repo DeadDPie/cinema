@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import cl from "./UserPaymentForm.module.scss";
 import { useNavigate } from "react-router-dom";
-//import { useSelector } from "react-redux";
+
+import cl from "./UserPaymentForm.module.scss";
 export const UserPaymentForm = () => {
   const navigate = useNavigate();
-  //const userData = useSelector((state) => state.user);
 
   const [user, setUser] = useState({
     name: "",

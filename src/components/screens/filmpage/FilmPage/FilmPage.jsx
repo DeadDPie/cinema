@@ -1,14 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 import { Header } from "@header/Header";
+
 import { FilmInfo } from "../FilmInfo/FilmInfo";
 import { Schedule } from "../Schedule/Schedule";
-import cl from "./FilmPage.module.scss";
-import { useSelector, useDispatch } from "react-redux";
 import { ModalDetailsPayment } from "../ModalDetailsPayment/ModalDetailsPayment";
 import { setSuccessful } from "./../../../../store/paymentDetails/paymentDetails.slice";
 import { SuccessfullyPaid } from "../SuccessfullyPaid/SuccessfullyPaid";
+
+import cl from "./FilmPage.module.scss";
+
 export const FilmPage = () => {
   const isSuccessful = useSelector((state) => state.payment.isSuccessful);
   const dispatch = useDispatch();
@@ -48,8 +52,15 @@ export const FilmPage = () => {
     <>
       <Header />
       <div className={cl.all}>
-        <div>{movie && <FilmInfo film={movie} />}</div>
-        {movie && <Schedule name={movie.name} movieId={movie.id}></Schedule>}
+        {movie && (
+          <>
+            <div>
+              <FilmInfo film={movie} />
+            </div>
+            <Schedule name={movie.name} movieId={movie.id} />
+          </>
+        )}
+
         {isSuccessful && !successfullyPaid && (
           <ModalDetailsPayment
             visible={!successfullyPaid}
