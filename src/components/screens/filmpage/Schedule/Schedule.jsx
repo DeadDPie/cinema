@@ -7,8 +7,17 @@ import { Sessions } from "../Sessions/Sessions";
 import { CinemaHall } from "../CinemaHall/CinemaHall";
 import { UserPaymentForm } from "../UserPaymentForm/UserPaymentForm";
 import { SuccessfullyPaid } from "../SuccessfullyPaid/SuccessfullyPaid";
+import { useSelector, useDispatch } from "react-redux";
+import Cookies from "js-cookie";
+
 export const Schedule = ({ name, movieId }) => {
+  const token = Cookies.get("userToken");
+
   const [schedules, setSchedules] = useState();
+  const [cinema, setCinema] = useState();
+  const [modal, setModal] = useState(false);
+  const [user, setUser] = useState({ phone: "" });
+
   const { filmId } = useParams();
   useEffect(() => {
     const func = async () => {
@@ -27,14 +36,27 @@ export const Schedule = ({ name, movieId }) => {
     };
     func();
   }, []);
-
-  if (schedules) {
-    const seances = schedules.map((schedule) => schedule.seances);
-  }
-
-  const [cinema, setCinema] = useState();
-
-  const [modal, setModal] = useState(false);
+  useEffect(() => {
+    const func = async () => {
+      const options = {
+        method: "GET",
+        url: "https://shift-backend.onrender.com/users/session",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      try {
+        const response = await axios.request(options);
+        //console.log(response.data);
+        response.data.success &&
+          setUser({ ...user, phone: response.data.user.phone });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    func();
+  }, [schedules, cinema]);
 
   const setHall = (hall) => {
     console.log(hall);
@@ -43,12 +65,22 @@ export const Schedule = ({ name, movieId }) => {
   const callbackModal = (modal) => {
     setModal(modal);
   };
-  /**  */
+
+  const isUserAuthorised = token && token.length > 0 ? true : false;
+  //const isUserAuthorised = false;
+  //const isUserAuthorised = useSelector((state) => state.user.isAuthorised);
+  //const user = useSelector((state) => state.user);
   return (
     <>
-      <ModalDetailsPayment visible={modal} setVisisble={setModal}>
+      {!isUserAuthorised && (
+        <ModalDetailsPayment visible={modal} setVisisble={setModal}>
+          <UserPaymentForm></UserPaymentForm>
+        </ModalDetailsPayment>
+      )}
+
+      {/* <ModalDetailsPayment visible={modal} setVisisble={setModal}>
         <UserPaymentForm></UserPaymentForm>
-      </ModalDetailsPayment>
+      </ModalDetailsPayment> */}
       <p style={{ color: "salmon", margin: "10px", fontSize: "48px" }}>
         Schedule
       </p>
@@ -59,12 +91,10 @@ export const Schedule = ({ name, movieId }) => {
           name={name}
           movieId={movieId}
           cinema={cinema}
+          user={user}
           callbackModal={callbackModal}
         ></CinemaHall>
       )}
     </>
   );
 };
-/*<ModalDetailsPayment visible={modal} setVisisble={setModal}>
-        <SuccessfullyPaid />
-      </ModalDetailsPayment>*/

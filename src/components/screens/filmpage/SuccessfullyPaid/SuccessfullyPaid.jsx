@@ -2,10 +2,7 @@ import React from "react";
 import cl from "./SuccessfullyPaid.module.scss";
 import { useSelector } from "react-redux";
 export const SuccessfullyPaid = () => {
-  const filmName = useSelector((state) => state.payment.film);
-  const Date = useSelector((state) => state.payment.date);
-  const time = useSelector((state) => state.payment.time);
-  const places = useSelector((state) => state.payment.places);
+  const { film, date, time, places } = useSelector((state) => state.payment);
 
   return (
     <div>
@@ -17,10 +14,10 @@ export const SuccessfullyPaid = () => {
       </div>
       <div className={cl.ticketInfo}>
         <p className={cl.title}>Film</p>
-        <p>{filmName}</p>
+        <p>{film}</p>
         <p className={cl.title}>Date and time</p>
         <p>
-          {Date} {time}
+          {date} {time}
         </p>
         <p className={cl.title}>Places</p>
         <p>Row: {places.row}</p>

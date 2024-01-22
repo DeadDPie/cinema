@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export const Auth = () => {
-  const nav = useNavigate();
+  const navigate = useNavigate();
   const [code, setCode] = useState();
   const [phone, setPhone] = useState();
   const [data, setData] = useState();
@@ -20,6 +20,8 @@ export const Auth = () => {
       const response = await axios.request(options);
       console.log(response.data);
       setData(response.data);
+
+      data.success && navigate("/account", { state: { token: data.token } });
     } catch (error) {
       console.error(error);
     }
@@ -36,7 +38,9 @@ export const Auth = () => {
   };
   {
     //так делать вообще правильно или это костыль из-за промиса
-    data && data.success && nav("/account", { state: { token: data.token } });
+    data &&
+      data.success &&
+      navigate("/account", { state: { token: data.token } });
   }
   const handleRequestCode = async () => {
     const options = {

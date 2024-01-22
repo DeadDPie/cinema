@@ -4,15 +4,14 @@ import { Ticket } from "./ticket/Ticket";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setAuthorised } from "../../../store/user/user.slice";
+import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 export const Account = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const token = location.state.token;
 
-  dispatch(setAuthorised(true));
-  const isAuthorised = useSelector((state) => state.user.isAuthorised);
-  console.log("isAuthorised  " + isAuthorised);
+  Cookies.set("userToken", `${token}`);
 
   const [tickets, setTickets] = useState();
   useEffect(() => {
@@ -38,21 +37,17 @@ export const Account = () => {
     };
     func();
   }, []);
-  const authorise = () => {
-    dispatch(setAuthorised(true));
-    nav(`/`, { state: { authorised: data.token } });
-  };
+
   const unAuthorise = () => {
-    nav("/auth");
-    //dispatch(setAuthorised(false));
+    Cookies.remove("userToken");
+    navigate("/auth");
   };
-  //onClick={() => authorise()}
   return (
     <div>
       <header className={cl.header}>
-        <a href="/" className={cl.logo}>
-          SHIFTcinema
-        </a>
+        <Link to="/" className={cl.logo}>
+          RETROcinema
+        </Link>
 
         <nav>
           <button onClick={() => unAuthorise()} className={cl.btnLogOut}>

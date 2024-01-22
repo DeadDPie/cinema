@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import cl from "./UserPaymentForm.module.scss";
 import { useNavigate } from "react-router-dom";
+//import { useSelector } from "react-redux";
 export const UserPaymentForm = () => {
-  const nav = useNavigate();
+  const navigate = useNavigate();
+  //const userData = useSelector((state) => state.user);
 
   const [user, setUser] = useState({
     name: "",
@@ -50,7 +52,9 @@ export const UserPaymentForm = () => {
           />
         </div>
         <div className={cl.btn}>
-          <button onClick={() => nav("/payment", { state: { user: user } })}>
+          <button
+            onClick={() => navigate("/payment", { state: { user: user } })}
+          >
             Continue
           </button>
         </div>

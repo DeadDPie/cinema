@@ -12,7 +12,7 @@ export const Payment = () => {
 
   console.log(user);
 
-  const nav = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [data, setData] = useState();
@@ -73,6 +73,9 @@ person: {
       const response = await axios.request(options);
       console.log(response.data);
       setData(response.data);
+      data.success &&
+        dispatch(setSuccessful(true)) &&
+        navigate(`/film/${movieId}`);
     } catch (error) {
       console.error(error);
     }
@@ -82,7 +85,7 @@ person: {
     data &&
       data.success &&
       dispatch(setSuccessful(true)) &&
-      nav(`/film/${movieId}`);
+      navigate(`/film/${movieId}`);
   }
   return (
     <div className={cl.payment}>

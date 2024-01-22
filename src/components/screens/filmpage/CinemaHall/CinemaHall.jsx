@@ -1,17 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cl from "./CinemaHall.module.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   choseFilm,
   chosePlaces,
   setFilmId,
   setSuccessful,
 } from "../../../../store/paymentDetails/paymentDetails.slice";
+import Cookies from "js-cookie";
+import { setPhone } from "../../../../store/user/user.slice";
+import axios from "axios";
 
-export const CinemaHall = ({ name, cinema, movieId, callbackModal }) => {
+export const CinemaHall = ({ user, name, cinema, movieId, callbackModal }) => {
+  const navigate = useNavigate();
+  const token = Cookies.get("userToken");
   const dispatch = useDispatch();
+
   const [place, setPlace] = useState({ row: "", placeNumber: "", price: "" });
-  console.log(movieId);
+
+  const isUserAuthorised = token && token.length > 0 ? true : false;
+
   const buy = (name, place) => {
     dispatch(choseFilm(name));
     dispatch(chosePlaces(place));
@@ -19,6 +28,23 @@ export const CinemaHall = ({ name, cinema, movieId, callbackModal }) => {
     dispatch(setSuccessful(false));
 
     callbackModal(true);
+  };
+  const buyWithAuth = () => {
+    dispatch(choseFilm(name));
+    dispatch(chosePlaces(place));
+    dispatch(setFilmId(movieId));
+    dispatch(setSuccessful(false));
+    dispatch(setPhone(user.phone));
+
+    //goToPayment();
+  };
+  const userData = useSelector((state) => state.user);
+  const chhec = useSelector((state) => state.payment);
+  const goToPayment = () => {
+    console.log(userData);
+    console.log(chhec);
+
+    navigate("/payment", { state: { user: userData } });
   };
   return (
     <div>
@@ -29,14 +55,15 @@ export const CinemaHall = ({ name, cinema, movieId, callbackModal }) => {
               <div>
                 {row.map((place, indexPlace) => (
                   <button
-                    onClick={() =>
+                    onClick={() => {
                       setPlace({
                         ...place,
                         row: indexRow + 1,
                         price: place.price,
                         placeNumber: indexPlace + 1,
-                      })
-                    }
+                      });
+                      buyWithAuth(name, place);
+                    }}
                     className={`${cl.place} ${
                       place.type === "ECONOM" ? cl.econom : cl.comfort
                     } ${place.price == 0 ? cl.blocked : ""}`}
@@ -61,9 +88,16 @@ export const CinemaHall = ({ name, cinema, movieId, callbackModal }) => {
           <div className={cl.cost}>
             <p>Full price</p>
             <p>{place.price}</p>
-            <button className={cl.btn} onClick={() => buy(name, place)}>
-              Buy <i className="bx bx-credit-card-front"></i>
-            </button>
+            {isUserAuthorised && (
+              <button className={cl.btn} onClick={() => goToPayment()}>
+                Buy <i className="bx bx-credit-card-front"></i>
+              </button>
+            )}
+            {!isUserAuthorised && (
+              <button className={cl.btn} onClick={() => buy(name, place)}>
+                Buy <i className="bx bx-credit-card-front"></i>
+              </button>
+            )}
           </div>
         </div>
       </div>

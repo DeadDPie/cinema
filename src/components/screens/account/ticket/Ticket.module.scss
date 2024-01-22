@@ -5,12 +5,12 @@
   justify-content: center;
   gap: 10px;
   width: 440px;
-  height: 171px;
+
   flex-shrink: 0;
   border-radius: 16px;
   background: var(--white, #fff);
   box-shadow: 0px 4px 12px 0px rgba(37, 37, 37, 0.25);
-
+  padding: 20px;
   .tiketTop {
     display: flex;
     justify-content: center;

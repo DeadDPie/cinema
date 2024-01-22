@@ -4,7 +4,7 @@ import styles from "./Card.module.css";
 export const Card = (props) => {
   const { film } = props;
   //console.log(film);
-  const nav = useNavigate();
+  const navigate = useNavigate();
   return (
     <>
       <div className={styles.item}>
@@ -32,7 +32,7 @@ export const Card = (props) => {
         <p className={styles.rating}>
           Kinopoisk - {film.userRatings.kinopoisk}
         </p>
-        <button type="submit" onClick={() => nav(`/film/${film.id}`)}>
+        <button type="submit" onClick={() => navigate(`/film/${film.id}`)}>
           Read more
         </button>
       </div>

@@ -1,25 +1,28 @@
 import { useState } from "react";
-import styles from "./Header.module.css";
-import { useNavigate } from "react-router-dom";
+import cl from "./Header.module.css";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import setAuthorised from "../../../../store/user/user.slice";
+//import setAuthorised from "../../../../store/user/user.slice";
+import Cookies from "js-cookie";
 
 export const Header = () => {
-  const isUserAuthorised = useSelector((state) => state.user.isAuthorised);
-  const dispatch = useDispatch();
+  const token = Cookies.get("userToken");
+
+  const isUserAuthorised = token && token.length > 0 ? true : false;
+
   const [search, setSearch] = useState("");
   const searchFilm = (e) => {
     console.log(search);
   };
-  const nav = useNavigate();
+  const navigate = useNavigate();
   console.log(isUserAuthorised);
   return (
     <>
-      <header className={styles.header}>
-        <a href="/" onClick={() => nav(`/`)} className={styles.logo}>
-          SHIFTcinema
-        </a>
-        <div className={styles.box}>
+      <header className={cl.header}>
+        <Link to="/" onClick={() => navigate(`/`)} className={cl.logo}>
+          RETROcinema
+        </Link>
+        <div className={cl.box}>
           <input
             type="text"
             placeholder="Search"
@@ -32,7 +35,7 @@ export const Header = () => {
         </div>
         {!isUserAuthorised && (
           <nav>
-            <button onClick={() => nav("/auth")} className={styles.btn}>
+            <button onClick={() => navigate("/auth")} className={cl.btn}>
               Login
             </button>
           </nav>
@@ -40,10 +43,16 @@ export const Header = () => {
         {isUserAuthorised && (
           <nav>
             <button
-              //onClick={() => dispatch(setAuthorised(false))}
-              className={styles.btn}
+              onClick={() => Cookies.remove("userToken")}
+              className={cl.btn}
             >
               Logout
+            </button>
+            <button
+              onClick={() => navigate("/account", { state: { token: token } })}
+              className={cl.btn}
+            >
+              Profile
             </button>
           </nav>
         )}
