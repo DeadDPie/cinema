@@ -1,10 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-//import { DateButton } from "./DateButton";
+import { useParams } from "react-router-dom";
+import Cookies from "js-cookie";
 
-export const Schedule = () => {
+import { ModalDetailsPayment } from "../ModalDetailsPayment/ModalDetailsPayment";
+import { Sessions } from "../Sessions/Sessions";
+import { CinemaHall } from "../CinemaHall/CinemaHall";
+import { UserPaymentForm } from "../UserPaymentForm/UserPaymentForm";
+
+export const Schedule = ({ name, movieId }) => {
+  const token = Cookies.get("userToken");
+
   const [schedules, setSchedules] = useState();
+  const [cinema, setCinema] = useState();
+  const [modal, setModal] = useState(false);
+  const [user, setUser] = useState({ phone: "" });
+
   const { filmId } = useParams();
   useEffect(() => {
     const func = async () => {
@@ -23,58 +34,62 @@ export const Schedule = () => {
     };
     func();
   }, []);
-  /**<button>{schedule.seances.time}</button> {schedules &&
-          schedules.map((schedule) => {
-            schedule.seances.map((seance) => <button>ddf{seance}</button>);
-          })}
-          {schedules &&
-          schedules.map((schedule) => (
-            <DateButton seances={schedule.seances}>{schedule.date}</DateButton>
-          ))}*/
-  //console.log(schedules.map((schedule) => schedule.seances));
-
-  let tm = [];
-  if (schedules) {
-    const seances = schedules.map((schedule) => schedule.seances);
-    for (let date of seances) {
-      tm = [];
-      for (let time of date) {
-        tm.push(time);
-        //console.log(time);
+  useEffect(() => {
+    const func = async () => {
+      const options = {
+        method: "GET",
+        url: "https://shift-backend.onrender.com/users/session",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      try {
+        const response = await axios.request(options);
+        //console.log(response.data);
+        response.data.success &&
+          setUser({ ...user, phone: response.data.user.phone });
+      } catch (error) {
+        console.error(error);
       }
-      //console.log(tm);
-      //console.log(tm[0]);
-    }
-    console.log(seances);
-  }
-  const [seancesDate, setSeancesDate] = useState();
-  const changeDate = (date) => {
-    //setSeancesDate(seances.filter((d) => d.id === date.id));
-    //возвращает новый массив, отфильтрованный по какому-то условию,
-    //здесь мы просто проверяем id
+    };
+    func();
+  }, [schedules, cinema]);
+
+  const setHall = (hall) => {
+    console.log(hall);
+    setCinema(hall);
+  };
+  const callbackModal = (modal) => {
+    setModal(modal);
   };
 
+  const isUserAuthorised = token && token.length > 0 ? true : false;
+
+  //const isUserAuthorised = useSelector((state) => state.user.isAuthorised);
+  //const user = useSelector((state) => state.user);
   return (
     <>
-      <p>schedule</p>
-      <div>
-        {schedules &&
-          schedules.map((schedule, index) => (
-            <button
-              key={index}
-              onClick={() => setSeancesDate(schedule.seances)}
-            >
-              {schedule.date}
-            </button>
-          ))}
-      </div>
+      {!isUserAuthorised && (
+        <ModalDetailsPayment visible={modal} setVisisble={setModal}>
+          <UserPaymentForm></UserPaymentForm>
+        </ModalDetailsPayment>
+      )}
 
-      <div>
-        {seancesDate &&
-          seancesDate.map((seance, index) => (
-            <button key={index}>{seance.time}</button>
-          ))}
-      </div>
+      <p style={{ color: "salmon", margin: "10px", fontSize: "48px" }}>
+        Schedule
+      </p>
+      {schedules && <Sessions schedules={schedules} setHall={setHall} />}
+
+      {cinema && (
+        <CinemaHall
+          name={name}
+          movieId={movieId}
+          cinema={cinema}
+          user={user}
+          callbackModal={callbackModal}
+        ></CinemaHall>
+      )}
     </>
   );
 };

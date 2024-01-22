@@ -1,0 +1,78 @@
+.ticket {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 440px;
+
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: var(--white, #fff);
+  box-shadow: 0px 4px 12px 0px rgba(37, 37, 37, 0.25);
+  padding: 20px;
+  .tiketTop {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 207px;
+    .date {
+      color: var(--lightgrey, #949494);
+      text-align: center;
+      font-family: Roboto;
+      font-size: 20px;
+
+      font-weight: 500;
+    }
+  }
+
+  .filmName {
+    color: var(--grey, #585858);
+    text-align: center;
+    font-family: Roboto;
+    font-size: 36px;
+
+    font-weight: 500;
+    line-height: 36px; /* 100% */
+  }
+  .place {
+    color: var(--grey, #585858);
+    text-align: center;
+    font-family: Roboto;
+    font-size: 20px;
+
+    font-weight: 500;
+  }
+  .about {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 173px;
+    margin-top: 8px;
+    .status {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      width: 88px;
+      height: 24px;
+      flex-shrink: 0;
+      border-radius: 6px;
+      background: var(--green, #44c341);
+      color: var(--white, #fff);
+      font-family: Roboto;
+      font-size: 16px;
+
+      font-weight: 500;
+      line-height: 16px; /* 100% */
+    }
+    .code {
+      color: var(--green, #44c341);
+      font-family: Roboto;
+      font-size: 16px;
+
+      font-weight: 500;
+      line-height: 16px; /* 100% */
+    }
+  }
+}

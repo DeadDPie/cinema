@@ -1,7 +1,10 @@
-import { Card } from "../Card/Card";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./CardsList.module.css";
+
+import { Card } from "../Card/Card";
+
+import cl from "./CardsList.module.scss";
+
 export const CardsList = () => {
   const [movies, setMovies] = useState();
   useEffect(() => {
@@ -23,7 +26,7 @@ export const CardsList = () => {
   //console.log(movies);
   return (
     <>
-      <div className={styles.all}>
+      <div className={cl.all}>
         {movies &&
           movies.map((film) => <Card film={film} key={film.id}></Card>)}
       </div>

@@ -1,0 +1,67 @@
+.payment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    color: var(--grey, #585858);
+    text-align: center;
+    font-family: Roboto;
+    font-size: 32px;
+
+    font-weight: 500;
+    line-height: 32px; /* 100% */
+  }
+  i {
+    font-size: 66px;
+    color: #44c341;
+    margin-bottom: 40px;
+  }
+  p {
+    color: var(--grey, #585858);
+    font-family: Roboto;
+    font-size: 24px;
+
+    font-weight: 500;
+    line-height: 24px; /* 100% */
+    letter-spacing: 0.24px;
+    text-transform: uppercase;
+  }
+  .code {
+    color: var(--yellow, #e2b33a);
+    font-family: Roboto;
+    font-size: 32px;
+
+    font-weight: 500;
+    line-height: 32px; /* 100% */
+    letter-spacing: 0.32px;
+  }
+}
+.ticketInfo {
+  .title {
+    margin-top: 8px;
+    color: #b89e9e;
+    font-family: Roboto;
+    font-size: 24px;
+
+    font-weight: 500;
+    line-height: 28px; /* 116.667% */
+    letter-spacing: 0.24px;
+  }
+  p {
+    color: var(--grey, #585858);
+    font-family: Roboto;
+    font-size: 20px;
+
+    font-weight: 500;
+  }
+}
+.additionalInfo {
+  margin-top: 40px;
+  color: var(--lightgrey, #949494);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 20px;
+
+  line-height: 20px; /* 100% */
+  letter-spacing: 0.2px;
+}

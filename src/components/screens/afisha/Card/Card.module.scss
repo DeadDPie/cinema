@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+.item {
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  width: 250px;
+  margin: 50px 40px 20px 20px;
+  box-sizing: border-box; /*дочерние элементы распологались внутри*/
+
+  button {
+    background-color: #f55a5a;
+    width: 156px;
+    height: 40px;
+    border: 2px;
+    border-radius: 8px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    box-align: Center;
+    margin: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  .rating {
+    color: #e2b33a;
+    font: "Roboto", sans-serif;
+
+    size: 14px;
+    margin: 5px;
+    padding: 5px;
+  }
+  .h2 {
+    font: "Roboto", sans-serif;
+
+    font-size: 20px;
+    color: #949494;
+    margin-left: 10px;
+  }
+  i {
+    margin-left: 10px;
+    margin-top: 5px;
+    color: #6f6464;
+  }
+  .h1 {
+    font: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }
+  .about {
+    text-align: center;
+    background-color: rgba(208, 167, 193, 0.536);
+    width: 156px;
+    border-radius: 10px 10px 0 0;
+    font: "Roboto", sans-serif;
+    font-weight: 500;
+    size: 14px;
+    align-items: Center;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image {
+    width: 250px;
+    height: 340px;
+    border-radius: 8px;
+  }
+  .ageRating {
+    background-color: #3f3737ef;
+    border-radius: 5px;
+    min-width: 20px;
+    max-width: 60px;
+    padding: 5px;
+    margin-left: auto;
+    margin-top: -40px;
+    margin-right: 8px;
+    color: white;
+  }
+}

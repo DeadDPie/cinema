@@ -1,20 +1,26 @@
 import { useState } from "react";
-import styles from "./Header.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
+import cl from "./Header.module.scss";
 export const Header = () => {
+  const token = Cookies.get("userToken");
+
+  const isUserAuthorised = token && token.length > 0 ? true : false;
+
   const [search, setSearch] = useState("");
   const searchFilm = (e) => {
     console.log(search);
   };
-  const nav = useNavigate();
+  const navigate = useNavigate();
+  console.log(isUserAuthorised);
   return (
     <>
-      <header className={styles.header}>
-        <a href="#" onClick={() => nav(`/`)} className={styles.logo}>
-          SHIFTcinema
-        </a>
-        <div className={styles.box}>
+      <header className={cl.header}>
+        <Link to="/" onClick={() => navigate(`/`)} className={cl.logo}>
+          RETROcinema
+        </Link>
+        <div className={cl.box}>
           <input
             type="text"
             placeholder="Search"
@@ -25,15 +31,29 @@ export const Header = () => {
             <i className="bx bx-search" onClick={searchFilm}></i>
           </a>
         </div>
-        <nav>
-          <a href="#" className={styles.a}>
-            Home
-          </a>
-          <a href="#" className={styles.a}>
-            About
-          </a>
-          <button className={styles.btn}>Login</button>
-        </nav>
+        {!isUserAuthorised && (
+          <nav>
+            <button onClick={() => navigate("/auth")} className={cl.btn}>
+              Login
+            </button>
+          </nav>
+        )}
+        {isUserAuthorised && (
+          <nav>
+            <button
+              onClick={() => Cookies.remove("userToken")}
+              className={cl.btn}
+            >
+              Logout
+            </button>
+            <button
+              onClick={() => navigate("/account", { state: { token: token } })}
+              className={cl.btn}
+            >
+              Profile
+            </button>
+          </nav>
+        )}
       </header>
     </>
   );
