@@ -99,6 +99,8 @@ person: {
               type="text"
               placeholder="0000 0000"
               value={debitCard.pan || ""}
+              minlength="8"
+              maxlength="9"
               onChange={(e) =>
                 setDebitCard({ ...debitCard, pan: e.target.value })
               }
@@ -120,7 +122,9 @@ person: {
               <p>CVV*</p>
               <input
                 type="text"
-                placeholder="0000"
+                placeholder="000"
+                minlength="3"
+                maxlength="4"
                 value={debitCard.cvv || ""}
                 onChange={(e) =>
                   setDebitCard({ ...debitCard, cvv: e.target.value })
