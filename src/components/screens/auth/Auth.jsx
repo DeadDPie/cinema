@@ -22,7 +22,8 @@ export const Auth = () => {
       console.log(response.data);
       setData(response.data);
 
-      data.success && navigate("/account", { state: { token: data.token } });
+      response.data.success &&
+        navigate("/account", { state: { token: response.data.token } });
     } catch (error) {
       console.error(error);
     }
