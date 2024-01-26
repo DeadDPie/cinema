@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const useMovie = (filmId) => {
+export const useMovie = (filmId: number) => {
   const [movie, setMovie] = useState();
 
   useEffect(() => {

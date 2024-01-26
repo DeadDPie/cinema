@@ -1,5 +1,12 @@
-export const useCanceledTicket = (token, id) => {
-  const handleButtonClick = async () => {
+import axios from "axios";
+
+export const useCanceledTicket = (
+  token: string,
+  id: string
+): React.MouseEventHandler<HTMLButtonElement> => {
+  const handleButtonClick:
+    | React.MouseEventHandler<HTMLButtonElement>
+    | undefined = async () => {
     const options = {
       method: "PUT",
       url: "https://shift-backend.onrender.com/cinema/orders/cancel",
@@ -18,4 +25,5 @@ export const useCanceledTicket = (token, id) => {
       console.error(error);
     }
   };
+  return handleButtonClick;
 };

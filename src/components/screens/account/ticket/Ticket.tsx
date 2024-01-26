@@ -1,19 +1,40 @@
-import cl from "./Ticket.module.scss";
-import { useCanceledTicket } from "../../../../hooks/useTickets";
+import React from "react";
+
+import { useCanceledTicket } from "../../../../hooks/useCanceledTicket.tsx";
 import { useMovie } from "../../../../hooks/useMovie";
 
-export const Ticket = ({ token, ticket }) => {
+import cl from "./Ticket.module.scss";
+
+interface TicketProps {
+  token: string;
+  ticket: {
+    _id: string;
+    tickets: {
+      seance: {
+        date: string;
+        time: string;
+      };
+      filmId: number;
+      row: number;
+      column: number;
+    }[];
+    status: string;
+    orderNumber: string;
+  };
+}
+
+export const Ticket: React.FC<TicketProps> = ({ token, ticket }) => {
   //console.log(ticket);
   const ticketInfo = ticket.tickets[0];
   const seance = ticketInfo.seance;
   const filmId = ticketInfo.filmId;
 
   const movie = useMovie(filmId);
-
   const useCanceledTickets = useCanceledTicket(token, ticket._id);
+
   return (
     <div>
-      <div className={cl.ticket}>
+      <div className={cl.moduleTicket}>
         <div className={cl.tiketTop}>
           {seance && <p className={cl.date}>{seance.date}</p>}
           {seance && <p className={cl.date}>{seance.time}</p>}
@@ -21,7 +42,7 @@ export const Ticket = ({ token, ticket }) => {
 
         {movie && (
           <>
-            <p className={cl.filmName}>{movie.name}</p>
+            <p className={cl.filmName}>{movie["name"]}</p>
             <p className={cl.place}>
               row {ticketInfo.row} place {ticketInfo.column}
             </p>
@@ -34,18 +55,7 @@ export const Ticket = ({ token, ticket }) => {
         </div>
       </div>
       {ticket.status !== "CANCELED" && (
-        <button
-          onClick={useCanceledTickets}
-          style={{
-            borderRadius: "20px",
-            border: "2px",
-            color: "white",
-            backgroundColor: "salmon",
-            padding: "10px",
-            margin: "10px",
-            cursor: "pointer",
-          }}
-        >
+        <button onClick={useCanceledTickets} className={cl.button}>
           Cancel
         </button>
       )}
