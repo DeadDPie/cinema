@@ -29,7 +29,7 @@ export const CinemaHall = ({ user, name, cinema, movieId, callbackModal }) => {
 
     callbackModal(true);
   };
-  const buyWithAuth = () => {
+  const buyWithAuth = (name, place) => {
     dispatch(choseFilm(name));
     dispatch(chosePlaces(place));
     dispatch(setFilmId(movieId));
@@ -40,7 +40,9 @@ export const CinemaHall = ({ user, name, cinema, movieId, callbackModal }) => {
   };
   const userData = useSelector((state) => state.user);
   const chhec = useSelector((state) => state.payment);
-  const goToPayment = () => {
+  const goToPayment = (name, place) => {
+    dispatch(choseFilm(name));
+    dispatch(chosePlaces(place));
     console.log(userData);
     console.log(chhec);
 
@@ -89,7 +91,10 @@ export const CinemaHall = ({ user, name, cinema, movieId, callbackModal }) => {
             <p>Full price</p>
             <p>{place.price}</p>
             {isUserAuthorised && (
-              <button className={cl.btn} onClick={() => goToPayment()}>
+              <button
+                className={cl.btn}
+                onClick={() => goToPayment(name, place)}
+              >
                 Buy <i className="bx bx-credit-card-front"></i>
               </button>
             )}

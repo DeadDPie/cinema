@@ -45,7 +45,7 @@ export const Sessions = ({ schedules, setHall }) => {
                 seance.hall.name === "Red" && cl.redHall
               } ${seance.hall.name === "Green" && cl.greenHall} ${
                 seance.hall.name === "Blue" && cl.blueHall
-              }}`}
+              }`}
               key={index}
               onClick={() => buy(seance)}
             >

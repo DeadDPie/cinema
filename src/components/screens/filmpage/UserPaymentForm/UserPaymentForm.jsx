@@ -13,9 +13,9 @@ const phoneSchema = z
   .regex(/^\+?[0-9]{10,12}$/gm, "Неправильный формат телефона");
 
 const validationSchema = z.object({
-  name: nameSchema,
-  surname: nameSchema,
-  partonymic: nameSchema.optional(),
+  firstname: nameSchema,
+  lastname: nameSchema,
+  middlename: nameSchema.optional(),
   phone: phoneSchema,
 });
 
@@ -23,9 +23,9 @@ export const UserPaymentForm = () => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    name: "",
-    surname: "",
-    partonymic: "",
+    firstname: "",
+    lastname: "",
+    middlename: "",
     phone: "",
   });
 
@@ -60,32 +60,32 @@ export const UserPaymentForm = () => {
           <input
             required
             type="text"
-            name="name"
-            value={user.name || ""}
+            name="firstname"
+            value={user.firstname || ""}
             onChange={handleChange}
           />
-          {errors.name && <span>{errors.name}</span>}
+          {errors.firstname && <span>{errors.firstname}</span>}
         </div>
         <div>
           <p>Surname*</p>
           <input
             required
             type="text"
-            name="surname"
-            value={user.surname || ""}
+            name="lastname"
+            value={user.lastname || ""}
             onChange={handleChange}
           />
-          {errors.surname && <span>{errors.surname}</span>}
+          {errors.lastname && <span>{errors.lastname}</span>}
         </div>
         <div>
           <p>Partonymic</p>
           <input
             type="text"
-            name="partonymic"
-            value={user.partonymic || ""}
+            name="middlename"
+            value={user.middlename || ""}
             onChange={handleChange}
           />
-          {errors.partonymic && <span>{errors.partonymic}</span>}
+          {errors.middlename && <span>{errors.middlename}</span>}
         </div>
         <div>
           <p>Phone number*</p>

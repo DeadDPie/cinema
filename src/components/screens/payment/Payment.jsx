@@ -26,6 +26,9 @@ export const Payment = () => {
   const date = useSelector((state) => state.payment.date);
   const time = useSelector((state) => state.payment.time);
   const places = useSelector((state) => state.payment.places);
+  console.log(movieId);
+  console.log(date);
+  console.log(places);
   /*
 person: {
           firstname: "firstname",
@@ -46,9 +49,9 @@ person: {
       data: {
         filmId: `${movieId}`,
         person: {
-          firstname: `${user.name}`,
-          lastname: `${user.surname}`,
-          middlename: `${user.partonymic}`,
+          firstname: `${user.firstname}`,
+          lastname: `${user.lastname}`,
+          middlename: `${user.middlename}`,
           phone: `${user.phone}`,
         },
         debitCard: {
@@ -80,6 +83,7 @@ person: {
       console.error(error);
     }
   };
+  console.log(date);
   {
     //так делать вообще правильно или это костыль из-за промиса
     data &&

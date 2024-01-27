@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Ticket } from "./ticket/Ticket";
 import { Link } from "react-router-dom";
@@ -8,6 +9,7 @@ import { useOrders } from "../../../hooks/useOrders";
 import cl from "./Account.module.scss";
 
 export const Account = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const token = location.state.token;
 

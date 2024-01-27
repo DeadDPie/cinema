@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 
 import cl from "./Header.module.scss";
 export const Header = () => {
+  const navigate = useNavigate();
   const token = Cookies.get("userToken");
 
   const isUserAuthorised = token && token.length > 0 ? true : false;
@@ -12,8 +13,7 @@ export const Header = () => {
   const searchFilm = (e) => {
     console.log(search);
   };
-  const navigate = useNavigate();
-  console.log(isUserAuthorised);
+
   return (
     <>
       <header className={cl.header}>
