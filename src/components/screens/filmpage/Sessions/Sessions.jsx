@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   choseTime,
   choseDate,
-} from "../../../../store/paymentDetails/paymentDetails.slice";
+} from "../../../../store/paymentDetails/paymentDetails.slice.ts";
 
 import cl from "./Sessions.module.scss";
 export const Sessions = ({ schedules, setHall }) => {
@@ -45,7 +45,7 @@ export const Sessions = ({ schedules, setHall }) => {
                 seance.hall.name === "Red" && cl.redHall
               } ${seance.hall.name === "Green" && cl.greenHall} ${
                 seance.hall.name === "Blue" && cl.blueHall
-              }}`}
+              }`}
               key={index}
               onClick={() => buy(seance)}
             >

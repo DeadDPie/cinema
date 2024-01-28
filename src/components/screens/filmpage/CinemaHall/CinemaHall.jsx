@@ -6,7 +6,7 @@ import {
   chosePlaces,
   setFilmId,
   setSuccessful,
-} from "../../../../store/paymentDetails/paymentDetails.slice";
+} from "../../../../store/paymentDetails/paymentDetails.slice.ts";
 import Cookies from "js-cookie";
 import { setPhone } from "../../../../store/user/user.slice";
 
@@ -30,17 +30,15 @@ export const CinemaHall = ({ user, name, cinema, movieId, callbackModal }) => {
     callbackModal(true);
   };
   const buyWithAuth = () => {
-    dispatch(choseFilm(name));
-    dispatch(chosePlaces(place));
     dispatch(setFilmId(movieId));
     dispatch(setSuccessful(false));
     dispatch(setPhone(user.phone));
-
-    //goToPayment();
   };
   const userData = useSelector((state) => state.user);
   const chhec = useSelector((state) => state.payment);
-  const goToPayment = () => {
+  const goToPayment = (name, place) => {
+    dispatch(choseFilm(name));
+    dispatch(chosePlaces(place));
     console.log(userData);
     console.log(chhec);
 
@@ -89,7 +87,10 @@ export const CinemaHall = ({ user, name, cinema, movieId, callbackModal }) => {
             <p>Full price</p>
             <p>{place.price}</p>
             {isUserAuthorised && (
-              <button className={cl.btn} onClick={() => goToPayment()}>
+              <button
+                className={cl.btn}
+                onClick={() => goToPayment(name, place)}
+              >
                 Buy <i className="bx bx-credit-card-front"></i>
               </button>
             )}

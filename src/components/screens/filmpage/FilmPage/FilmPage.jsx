@@ -8,36 +8,21 @@ import { Header } from "@header/Header";
 import { FilmInfo } from "../FilmInfo/FilmInfo";
 import { Schedule } from "../Schedule/Schedule";
 import { ModalDetailsPayment } from "../ModalDetailsPayment/ModalDetailsPayment";
-import { setSuccessful } from "./../../../../store/paymentDetails/paymentDetails.slice";
+import { setSuccessful } from "./../../../../store/paymentDetails/paymentDetails.slice.ts";
 import { SuccessfullyPaid } from "../SuccessfullyPaid/SuccessfullyPaid";
 
 import cl from "./FilmPage.module.scss";
+import { useMovie } from "../../../../hooks/useMovie";
 
 export const FilmPage = () => {
   const isSuccessful = useSelector((state) => state.payment.isSuccessful);
   const dispatch = useDispatch();
 
-  const [movie, setMovie] = useState();
   const { filmId } = useParams();
   const [successfullyPaid, setsuccessfullyPaid] = useState(false);
 
-  useEffect(() => {
-    const func = async () => {
-      const options = {
-        method: "GET",
-        url: `https://shift-backend.onrender.com/cinema/film/${filmId}`,
-      };
+  const movie = useMovie(filmId);
 
-      try {
-        const response = await axios.request(options);
-        //console.log(response.data.film);
-        setMovie(response.data.film);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    func();
-  }, []);
   console.log(
     "isSuccessful " + isSuccessful,
     "successfullyPaid " + successfullyPaid + ">"
