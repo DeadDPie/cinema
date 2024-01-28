@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   choseTime,
   choseDate,
-} from "../../../../store/paymentDetails/paymentDetails.slice";
+} from "../../../../store/paymentDetails/paymentDetails.slice.ts";
 
 import cl from "./Sessions.module.scss";
 export const Sessions = ({ schedules, setHall }) => {

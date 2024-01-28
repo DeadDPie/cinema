@@ -3,8 +3,6 @@ import cl from "./FilmInfo.module.scss";
 export const FilmInfo = (props) => {
   const { film } = props;
 
-  //console.log(film);
-  /**/
   return (
     <>
       <div className={cl.info}>

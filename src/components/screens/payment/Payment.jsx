@@ -1,21 +1,17 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setSuccessful } from "./../../../store/paymentDetails/paymentDetails.slice";
 import { useLocation } from "react-router-dom";
 
+import { usePayment } from "../../../hooks/usePayment";
+
 import cl from "./Payment.module.scss";
+
 export const Payment = () => {
   const location = useLocation();
   const user = location.state.user;
 
   console.log(user);
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const [data, setData] = useState();
   const [debitCard, setDebitCard] = useState({
     pan: "",
     expireDate: "",
@@ -41,56 +37,9 @@ person: {
           expireDate: "11/11",
           cvv: "111",
         }, */
-  //{name: 'dfgh', surname: 'dfg', partonymic: 'cvb', phone: 'fghj'}
-  const buyTicket = async () => {
-    const options = {
-      method: "POST",
-      url: "https://shift-backend.onrender.com/cinema/payment",
-      data: {
-        filmId: `${movieId}`,
-        person: {
-          firstname: `${user.firstname}`,
-          lastname: `${user.lastname}`,
-          middlename: `${user.middlename}`,
-          phone: `${user.phone}`,
-        },
-        debitCard: {
-          pan: `${debitCard.pan}`,
-          expireDate: `${debitCard.expireDate}`,
-          cvv: `${debitCard.cvv}`,
-        },
-        seance: {
-          date: `${date}`,
-          time: `${time}`,
-        },
-        tickets: [
-          {
-            row: parseInt(places.row),
-            column: parseInt(places.seat),
-          },
-        ],
-      },
-    };
 
-    try {
-      const response = await axios.request(options);
-      console.log(response.data);
-      setData(response.data);
-      data.success &&
-        dispatch(setSuccessful(true)) &&
-        navigate(`/film/${movieId}`);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  console.log(date);
-  {
-    //так делать вообще правильно или это костыль из-за промиса
-    data &&
-      data.success &&
-      dispatch(setSuccessful(true)) &&
-      navigate(`/film/${movieId}`);
-  }
+  const buyTicket = usePayment(movieId, user, debitCard, date, time, places);
+
   return (
     <div className={cl.payment}>
       <h2>Enter your payment details</h2>

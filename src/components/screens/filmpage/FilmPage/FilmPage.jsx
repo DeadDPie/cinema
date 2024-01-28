@@ -8,7 +8,7 @@ import { Header } from "@header/Header";
 import { FilmInfo } from "../FilmInfo/FilmInfo";
 import { Schedule } from "../Schedule/Schedule";
 import { ModalDetailsPayment } from "../ModalDetailsPayment/ModalDetailsPayment";
-import { setSuccessful } from "./../../../../store/paymentDetails/paymentDetails.slice";
+import { setSuccessful } from "./../../../../store/paymentDetails/paymentDetails.slice.ts";
 import { SuccessfullyPaid } from "../SuccessfullyPaid/SuccessfullyPaid";
 
 import cl from "./FilmPage.module.scss";
